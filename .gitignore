@@ -1,0 +1,17 @@
+.gradle
+.idea
+build
+classes
+schema
+out
+*.iml
+javadocs/
+adapter.log
+file-cache/
+generated-sources/
+application-*.yml
+/bin/
+/.classpath
+/.project
+/.settings/
+application-*.properties

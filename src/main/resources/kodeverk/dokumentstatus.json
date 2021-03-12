@@ -1,0 +1,100 @@
+[
+  {
+    "kode": "MOTTATT",
+    "navn": "Et kall mottatt på forsendelses-service. En id blir tildelt forsendelsen.",
+    "systemId": {
+      "identifikatorverdi": "MOTTATT"
+    }
+  },
+  {
+    "kode": "AKSEPTERT",
+    "navn": "Meldingen er validert og forsendelsesfil dannet.",
+    "systemId": {
+      "identifikatorverdi": "AKSEPTERT"
+    }
+  },
+  {
+    "kode": "KLAR_FOR_MOTTAK",
+    "navn": "Venter på at forsendelse skal bli lastet ned av mottaker.",
+    "systemId": {
+      "identifikatorverdi": "KLAR_FOR_MOTTAK"
+    }
+  },
+  {
+    "kode": "VARSLET",
+    "navn": "Et varsel om forsendelsen er sendt til varslingstjenesten.",
+    "systemId": {
+      "identifikatorverdi": "VARSLET"
+    }
+  },
+  {
+    "kode": "LEST",
+    "navn": "En forsendelse er lest når hele forsendelsesfilen er lastet ned av mottaker.",
+    "systemId": {
+      "identifikatorverdi": "LEST"
+    }
+  },
+  {
+    "kode": "SENDT_PRINT",
+    "navn": "Forsendelsen er blitt overført til printleverandør.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_PRINT"
+    }
+  },
+  {
+    "kode": "SENDT_SDP",
+    "navn": "Forsendelsen er motatt og sendt slik den skal. Ikke blitt lest enda. Forsendelser med denne status vil kun leveres digitalt og vil aldri gå til print.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_SDP"
+    }
+  },
+  {
+    "kode": "SENDT_SDP",
+    "navn": "Forsendelsen er motatt og sendt til Sikker digital postkasse.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_SDP"
+    }
+  },
+  {
+    "kode": "LEVERT_SDP",
+    "navn": "Forsendelsen er motatt og sendt til Sikker digital postkasse. Vi har motatt Leveringskvittering fra SDP. Forsendelsen skal da være tilgjengelig for mottaker.",
+    "systemId": {
+      "identifikatorverdi": "LEVERT_SDP"
+    }
+  },
+  {
+    "kode": "PRINTET",
+    "navn": "Printkvittering mottatt fra printleverandør eller manuell print bekreftet(via webgrensesnitt).",
+    "systemId": {
+      "identifikatorverdi": "PRINTET"
+    }
+  },
+  {
+    "kode": "AVVIST",
+    "navn": "Forsendelsen er ikke validert pga. manglende/korrupt metadata, eller fordi forsendelsesfil ikke kunne dannes.",
+    "systemId": {
+      "identifikatorverdi": "AVVIST"
+    }
+  },
+  {
+    "kode": "IKKE_LEVERT",
+    "navn": "Kun digital leveranse hvor vi ikke har klart å levere forsendelsen.",
+    "systemId": {
+      "identifikatorverdi": "IKKE_LEVERT"
+    }
+  },
+  {
+    "kode": "MANUELT_HANDTERT",
+    "navn": "Forsendelsen er manuelt avsluttet, f.eks. pga en feilsituasjon.",
+    "systemId": {
+      "identifikatorverdi": "MANUELT_HANDTERT"
+    }
+  },
+  {
+    "kode": "KLART_TIL_SVARUT",
+    "navn": "Dokumentet er klart for utsending til SvarUT",
+    "systemId": {
+      "identifikatorverdi": "KLART_TIL_SVARUT"
+    }
+  }
+]
