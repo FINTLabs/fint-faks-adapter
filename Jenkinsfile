@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Publish Latest') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 sh "docker tag ${GIT_COMMIT} fintlabsacr.azurecr.io/fint-faks-adapter:build.${BUILD_NUMBER}"
