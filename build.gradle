@@ -33,10 +33,10 @@ javadoc {
 
 
 repositories {
+    mavenCentral()
     mavenLocal()
-    jcenter()
     maven {
-        url 'http://dl.bintray.com/fint/maven'
+        url "https://repo.fintlabs.no/releases"
     }
 }
 
@@ -62,13 +62,13 @@ dependencies {
     compile('org.jooq:jool-java-8:0.9.14')
     compile('org.projectlombok:lombok:1.18.8')
 
-    compile 'no.fint:fint-model-resource:0.3.3'
-    compile('no.fint:fint-event-model:3.0.0')
-    compile('no.fint:fint-relation-model:1.1.5')
-    compile('no.fint:fint-spring-secrets:0.1.0')
-    compile('no.fint:fint-sse:2.0.0-rc-1')
+    compile 'no.fint:fint-model-resource:0.4.1'
+    compile('no.fint:fint-event-model:3.0.1')
+    compile('no.fint:fint-relation-model:1.1.6')
+    compile('no.fint:fint-spring-secrets:0.2.2')
+    compile('no.fint:fint-sse:2.0.0')
 
-    compile('no.fint:fint-arkiv-case-defaults:2.3.0-rc-2')
+    compile('no.fint:fint-arkiv-case-defaults:3.1.0')
     compile("no.fint:fint-arkiv-resource-model-java:${apiVersion}")
     compile("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
 
@@ -87,7 +87,7 @@ dependencies {
     compile 'org.hibernate.validator:hibernate-validator:6.0.17.Final'
     compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.0.17.Final'
 
-    compile('com.azure:azure-storage-blob:12.1.0')
+    compile('com.azure:azure-storage-blob:12.14.1')
     compile 'io.projectreactor:reactor-core:3.3.1.RELEASE'
 
     testCompile('cglib:cglib-nodep:3.2.12')
