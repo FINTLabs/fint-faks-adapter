@@ -53,7 +53,7 @@ dependencies {
     compile('org.bouncycastle:bcprov-jdk15on:1.50')
     compile('commons-io:commons-io:2.6')
 
-    compile('com.google.guava:guava:28.0-jre')
+    compile('com.google.guava:guava:28.2-jre')
     compile('org.apache.commons:commons-lang3:3.9')
     compile('org.apache.jena:jena-arq:3.12.0')
     compile('org.apache.tika:tika-core:1.28.5')
