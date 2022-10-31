@@ -85,7 +85,7 @@ dependencies {
     // Version 6.1.0 does not work :(
     compile 'javax.validation:validation-api:2.0.1.Final'
     compile 'org.hibernate.validator:hibernate-validator:6.0.17.Final'
-    compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.0.17.Final'
+    compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.2.5.Final'
 
     compile('com.azure:azure-storage-blob:12.14.1')
     compile 'io.projectreactor:reactor-core:3.3.1.RELEASE'
