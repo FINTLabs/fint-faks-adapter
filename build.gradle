@@ -89,7 +89,7 @@ dependencies {
     compile('com.azure:azure-storage-blob:12.14.1')
     compile 'io.projectreactor:reactor-core:3.3.1.RELEASE'
 
-    testCompile('cglib:cglib-nodep:3.2.12')
+    testCompile('cglib:cglib-nodep:3.3.0')
     testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     testCompile('org.springframework.boot:spring-boot-starter-test')
