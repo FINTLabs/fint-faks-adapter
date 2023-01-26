@@ -46,7 +46,7 @@ dependencies {
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
 
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.3.3')
+    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.5')
     compile('org.apache.cxf:cxf-rt-transports-http:3.5.5')
     compile('org.bouncycastle:bcpkix-jdk15on:1.50')
     compile('org.bouncycastle:bcprov-jdk15on:1.50')
@@ -89,14 +89,14 @@ dependencies {
     compile('com.azure:azure-storage-blob:12.14.1')
     compile 'io.projectreactor:reactor-core:3.3.1.RELEASE'
 
-    testCompile('cglib:cglib-nodep:3.2.12')
+    testCompile('cglib:cglib-nodep:3.3.0')
     testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0')
 
     compile 'commons-beanutils:commons-beanutils:1.9.4'
-    compile 'org.apache.commons:commons-text:1.8'
+    compile 'org.apache.commons:commons-text:1.10.0'
 }
 
 task copyExternalDependencies(type: Copy) {
