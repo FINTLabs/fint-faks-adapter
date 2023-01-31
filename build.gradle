@@ -89,7 +89,7 @@ dependencies {
     compile 'org.hibernate.validator:hibernate-validator:6.0.17.Final'
     compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.0.17.Final'
 
-    compile('com.azure:azure-storage-blob:12.7.0')
+    compile('com.azure:azure-storage-blob:12.20.2')
     compile 'io.projectreactor:reactor-core:3.5.2'
 
     testCompile('cglib:cglib-nodep:3.3.0')
