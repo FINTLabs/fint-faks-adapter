@@ -92,6 +92,12 @@ dependencies {
     compile('com.azure:azure-storage-blob:12.20.2')
     compile 'io.projectreactor:reactor-core:3.5.2'
 
+    compile('com.fasterxml.jackson.core:jackson-annotations:2.10.0')
+    compile('com.fasterxml.jackson.core:jackson-core:2.10.0')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.10.0')
+    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.0')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.0')
+
     testCompile('cglib:cglib-nodep:3.3.0')
     testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
