@@ -151,7 +151,7 @@ wsdl2java {
 }
 
 wsdl2javaExt {
-    cxfVersion = '3.3.3'
+    cxfVersion = '3.5.5'
     deleteGeneratedSourcesOnClean = true
 }
 
