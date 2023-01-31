@@ -50,7 +50,7 @@ dependencies {
     compile('org.apache.cxf:cxf-rt-transports-http:3.5.5')
     compile('org.apache.cxf:cxf-rt-ws-security:3.5.5')
     compile('org.bouncycastle:bcpkix-jdk15on:1.50')
-    compile('org.bouncycastle:bcprov-jdk15on:1.50')
+    compile('org.bouncycastle:bcprov-jdk15on:1.70')
     compile('commons-io:commons-io:2.11.0')
 
     compile('com.google.guava:guava:31.1-jre')
