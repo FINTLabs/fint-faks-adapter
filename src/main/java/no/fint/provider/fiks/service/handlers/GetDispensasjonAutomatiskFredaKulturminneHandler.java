@@ -3,11 +3,11 @@ package no.fint.provider.fiks.service.handlers;
 import com.google.common.collect.ImmutableList;
 import no.fint.event.model.Event;
 import no.fint.event.model.ResponseStatus;
-import no.fint.model.arkiv.samferdsel.SamferdselActions;
+import no.fint.model.arkiv.kulturminnevern.KulturminnevernActions;
 import no.fint.model.resource.FintLinks;
-import no.fint.provider.fiks.exception.GetSoknadDrosjeloyveNotFoundException;
+import no.fint.provider.fiks.exception.GetDispensasjonAutomatiskFredaKulturminneNotFoundException;
+import no.fint.provider.fiks.service.fint.DispensasjonAutomatiskFredaKulturminneFactory;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
-import no.fint.provider.fiks.service.fint.SoknadDrosjeloyveFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,13 @@ import java.util.Collections;
 import java.util.Set;
 
 @Service
-public class GetSoknadDrosjeloyveHandler implements Handler {
+public class GetDispensasjonAutomatiskFredaKulturminneHandler implements Handler {
 
     @Autowired
     private FaxQueryService queryService;
 
     @Autowired
-    private SoknadDrosjeloyveFactory soknadDrosjeloyveFactory;
+    private DispensasjonAutomatiskFredaKulturminneFactory dispensasjonAutomatiskFredaKulturminneFactory;
 
     @Override
     public void accept(Event<FintLinks> response) {
@@ -33,9 +33,10 @@ public class GetSoknadDrosjeloyveHandler implements Handler {
             return;
         }
         try {
-            response.setData(ImmutableList.of(soknadDrosjeloyveFactory.toFintResource(queryService.query(response.getOrgId(), query))));
+            response.setData(ImmutableList.of(dispensasjonAutomatiskFredaKulturminneFactory
+                    .toFintResource(queryService.query(response.getOrgId(), query))));
             response.setResponseStatus(ResponseStatus.ACCEPTED);
-        } catch (GetSoknadDrosjeloyveNotFoundException e) {
+        } catch (GetDispensasjonAutomatiskFredaKulturminneNotFoundException e) {
             response.setResponseStatus(ResponseStatus.REJECTED);
             response.setStatusCode("NOT_FOUND");
             response.setMessage(e.getMessage());
@@ -44,6 +45,6 @@ public class GetSoknadDrosjeloyveHandler implements Handler {
 
     @Override
     public Set<String> actions() {
-        return Collections.singleton(SamferdselActions.GET_SOKNADDROSJELOYVE.name());
+        return Collections.singleton(KulturminnevernActions.GET_DISPENSASJONAUTOMATISKFREDAKULTURMINNE.name());
     }
 }

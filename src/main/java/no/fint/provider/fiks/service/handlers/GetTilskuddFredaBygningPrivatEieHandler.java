@@ -5,7 +5,7 @@ import no.fint.event.model.Event;
 import no.fint.event.model.ResponseStatus;
 import no.fint.model.arkiv.kulturminnevern.KulturminnevernActions;
 import no.fint.model.resource.FintLinks;
-import no.fint.provider.fiks.exception.GetTilskuddFartoyNotFoundException;
+import no.fint.provider.fiks.exception.GetTilskuddFredaBygningPrivatEieNotFoundException;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
 import no.fint.provider.fiks.service.fint.TilskuddFredaBygningPrivatEieFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class GetTilskuddFredaBygningPrivatEieHandler implements Handler {
         try {
             response.setData(ImmutableList.of(tilskuddFredaBygningPrivatEieFactory.toFintResource(queryService.query(response.getOrgId(), query))));
             response.setResponseStatus(ResponseStatus.ACCEPTED);
-        } catch (GetTilskuddFartoyNotFoundException e) {
+        } catch (GetTilskuddFredaBygningPrivatEieNotFoundException e) {
             response.setResponseStatus(ResponseStatus.REJECTED);
             response.setStatusCode("NOT_FOUND");
             response.setMessage(e.getMessage());
