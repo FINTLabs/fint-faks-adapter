@@ -92,7 +92,7 @@ dependencies {
     compile('com.azure:azure-storage-blob:12.20.2')
     compile 'io.projectreactor:reactor-core:3.5.2'
 
-    compile('com.fasterxml.jackson.core:jackson-annotations:2.15.0')
+    compile('com.fasterxml.jackson.core:jackson-annotations:2.15.2')
     compile('com.fasterxml.jackson.core:jackson-core:2.15.0')
     compile('com.fasterxml.jackson.core:jackson-databind:2.15.0')
     compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.0')
