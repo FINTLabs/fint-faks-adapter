@@ -57,6 +57,10 @@ jobs:
             cluster: aks-api-fint-2022-02-08
             deploy-every-branch: true
 
+          - org: bya-oslo-kommune-no
+            cluster: aks-api-fint-2022-02-08
+            deploy-every-branch: true
+
     steps:
       - uses: actions/checkout@v3
 
