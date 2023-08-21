@@ -57,10 +57,6 @@ jobs:
             cluster: aks-api-fint-2022-02-08
             deploy-every-branch: true
 
-          - org: bya-oslo-kommune-no
-            cluster: aks-api-fint-2022-02-08
-            deploy-every-branch: true
-
           - org: samediggi-no
             cluster: aks-api-fint-2022-02-08
             deploy-every-branch: true
