@@ -12,6 +12,9 @@ spec:
       containers:
         - name: faks-adapter
           image: fintlabsacr.azurecr.io/fint-faks-adapter:2023-07-04-f696933
+          volumeMounts:
+            - name: certificate
+              mountPath: /secrets
           envFrom:
             - secretRef:
                 name: faks-adapter-bym-oslo

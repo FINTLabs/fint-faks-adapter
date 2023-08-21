@@ -36,9 +36,6 @@ spec:
               port: 8091
             initialDelaySeconds: 10
             timeoutSeconds: 5
-          volumeMounts:
-            - name: certificate
-              mountPath: /secrets
           envFrom:
             - secretRef:
                 name: faks-adapter-bym-oslo
@@ -60,5 +57,4 @@ spec:
             - {name: endpoints.health.enabled, value: "true" }
             - {name: endpoints.prometheus.enabled, value: "true" }
             - {name: endpoints.metrics.enabled, value: "true" }
-            - {name: fint.case.defaults.soknaddrosjeloyve.title.cases, value: 'Drosjeløyvesøknad: ${organisasjonsnavn}'}
             - {name: fint.internal-files.type, value: 'BLOB'}
