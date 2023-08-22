@@ -34,10 +34,14 @@ spec:
             - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
             - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
             - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.kulturminneid, value: '${kulturminneId}' }
+            - { name: fint.case.defaults.dispensasjonautomatiskfredakulturminne.title.cases, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}' }
+            - { name: fint.case.defaults.dispensasjonautomatiskfredakulturminne.field.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
+            - { name: fint.case.defaults.dispensasjonautomatiskfredakulturminne.field.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            - { name: fint.case.defaults.dispensasjonautomatiskfredakulturminne.field.kulturminneid, value: '${kulturminneId}' }
             - { name: fint.internal-files.type, value: 'BLOB' }
             - { name: fint.internal-files.connection-string, valueFrom: { secretKeyRef: { name: stfint, key: connection-string } } }
             - { name: spring.data.mongodb.uri, valueFrom: { secretKeyRef: { name: fint-mongo-db, key: mongodb } } }
-            - {name: spring.data.mongodb.database, value: 'svarut-faks'}
-            - {name: fint.adapter.endpoints.providers.kodeverk, value: https://api.felleskomponent.no/arkiv/kodeverk/provider}
-            - {name: fint.adapter.endpoints.providers.noark, value: https://api.felleskomponent.no/arkiv/noark/provider}
-            - {name: fint.adapter.endpoints.providers.kulturminne, value: https://api.felleskomponent.no/arkiv/kulturminnevern/provider}
+            - { name: spring.data.mongodb.database, value: 'svarut-faks'}
+            - { name: fint.adapter.endpoints.providers.kodeverk, value: https://api.felleskomponent.no/arkiv/kodeverk/provider}
+            - { name: fint.adapter.endpoints.providers.noark, value: https://api.felleskomponent.no/arkiv/noark/provider}
+            - { name: fint.adapter.endpoints.providers.kulturminne, value: https://api.felleskomponent.no/arkiv/kulturminnevern/provider}
