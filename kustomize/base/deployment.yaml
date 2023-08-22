@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: faks-adapter
-          image: fintlabsacr.azurecr.io/fint-faks-adapter:latest
+          image: ghcr.io/fintlabs/fint-faks-adapter:empty
           resources:
             limits:
               memory: "2Gi"
