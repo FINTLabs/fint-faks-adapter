@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
         - name: faks-adapter
-          image: fintlabsacr.azurecr.io/fint-faks-adapter:2023-07-04-f696933
           resources:
             limits:
               memory: "4Gi"

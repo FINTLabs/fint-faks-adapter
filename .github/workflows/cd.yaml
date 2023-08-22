@@ -4,46 +4,46 @@ on: push
 
 jobs:
 
-#  build-and-publish:
-#    runs-on: ubuntu-latest
-#    outputs:
-#      tags: ${{ steps.meta.outputs.tags }}
-#    env:
-#      DOCKER_BUILDKIT: 1
-#
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#      - name: Docker meta
-#        id: meta
-#        uses: docker/metadata-action@v4
-#        with:
-#          images: ghcr.io/${{ github.repository }}
-#          tags: |
-#            type=ref,event=branch,suffix=-{{sha}}
-#            type=ref,event=pr,suffix=-{{sha}}
-#            type=sha,prefix={{date 'YYYY-MM-DD-'}},enable={{is_default_branch}}
-#            type=raw,value=latest,enable={{is_default_branch}}
-#
-#      - name: Log in to the Container registry
-#        uses: docker/login-action@v2.2.0
-#        with:
-#          registry: ghcr.io
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Build and push
-#        uses: docker/build-push-action@v4
-#        with:
-#          push: ${{ github.actor != 'dependabot[bot]' }}
-#          tags: ${{ steps.meta.outputs.tags }}
-#          labels: ${{ steps.meta.outputs.labels }}
+  build-and-publish:
+    runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
+    env:
+      DOCKER_BUILDKIT: 1
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch,suffix=-{{sha}}
+            type=ref,event=pr,suffix=-{{sha}}
+            type=sha,prefix={{date 'YYYY-MM-DD-'}},enable={{is_default_branch}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2.2.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: ${{ github.actor != 'dependabot[bot]' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   deploy-to-aks:
     name: ${{ matrix.org }}-${{ matrix.cluster }}
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
-#    needs: build-and-publish
+    needs: build-and-publish
     strategy:
       fail-fast: false
       matrix:
