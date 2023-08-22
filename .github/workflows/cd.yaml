@@ -95,17 +95,6 @@ jobs:
             echo "To deploy, merge to ${{ github.base_ref }}." 
           } >> $GITHUB_STEP_SUMMARY
 
-      - name: Output kubectl diff summary
-        run: |
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-          brew install homeport/tap/dyff
-          export KUBECTL_EXTERNAL_DIFF="dyff between --no-table-style --set-exit-code"
-          {
-            echo '```bash'
-            echo "$(kubectl diff -f ${{ steps.bake.outputs.manifestsBundle }})"
-            echo '```'
-          } >> $GITHUB_STEP_SUMMARY
-
       - name: Get namespace from config file
         id: namespace
         run: |
