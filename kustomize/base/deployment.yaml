@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adapter-faks
+spec:
+  selector:
+    matchLabels:
+      app: adapter-faks
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: adapter-faks
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8091"
+        prometheus.io/path: "prometheus"
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: faks-adapter
+          image: ghcr.io/fintlabs/fint-faks-adapter:empty
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "2"
+            requests:
+              memory: "1Gi"
+              cpu: "250m"
+          ports:
+            - containerPort: 8091
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8091
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          envFrom:
+            - secretRef:
+                name: faks-adapter-bym-oslo
+          env:
+            - {name: TZ, value: Europe/Oslo}
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -Xmx1G -verbose:gc
+                -XX:+ExitOnOutOfMemoryError
+                -Dfile.encoding=UTF-8
+                -Dcom.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true
+                -Dcom.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.dump=true
+                -Dcom.sun.xml.ws.transport.http.HttpAdapter.dump=true
+                -Dcom.sun.xml.internal.ws.transport.http.HttpAdapter.dump=true
+                -Dcom.sun.xml.internal.ws.transport.http.HttpAdapter.dumpTreshold=10000
+            - {name: security.basic.enabled, value: "false"}
+            - {name: endpoints.enabled, value: "false"}
+            - {name: endpoints.sensitive, value: "false"}
+            - {name: endpoints.health.enabled, value: "true" }
+            - {name: endpoints.prometheus.enabled, value: "true" }
+            - {name: endpoints.metrics.enabled, value: "true" }
+            - {name: fint.internal-files.type, value: 'BLOB'}

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adapter-faks
+spec:
+  template:
+    spec:
+      containers:
+        - name: faks-adapter
+          resources:
+            limits:
+              memory: "4Gi"
+            requests:
+              memory: "3Gi"
+          envFrom:
+            - secretRef:
+                name: faks-adapter-bya-oslo
+          env:
+            - { name: TZ, value: Europe/Oslo }
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -Xmx3G -verbose:gc
+                -XX:+ExitOnOutOfMemoryError
+                -Dfile.encoding=UTF-8
+            - { name: springfox.title, value: "SvarUt (Faks) Adapter for Byantikvaren Oslo kommune" }
+            - { name: security.basic.enabled, value: "false" }
+            - { name: fint.adapter.organizations, value: bya.oslo.kommune.no }
+            - { name: fint.adapter.reject-unknown-events, value: 'false' }
+            - { name: fint.case.defaults.tilskuddfartoy.title.cases, value: 'Tilskudd - ${kallesignal} - ${fartoyNavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}' }
+            - { name: fint.case.defaults.tilskuddfartoy.field.fartoy, value: '${kallesignal} ${fartoyNavn}' }
+            - { name: fint.case.defaults.tilskuddfartoy.field.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            - { name: fint.case.defaults.tilskuddfartoy.field.kulturminneid, value: '${kulturminneId}' }
+            - { name: fint.case.defaults.tilskuddfredabygningprivateie.title.cases, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${bygningsnavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}' }
+            - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
+            - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            - { name: fint.case.defaults.tilskuddfredabygningprivateie.field.kulturminneid, value: '${kulturminneId}' }
+            - { name: fint.internal-files.type, value: 'BLOB' }
+            - { name: fint.internal-files.connection-string, valueFrom: { secretKeyRef: { name: stfint, key: connection-string } } }
+            - { name: spring.data.mongodb.uri, valueFrom: { secretKeyRef: { name: fint-mongo-db, key: mongodb } } }
+            - {name: spring.data.mongodb.database, value: 'svarut-faks'}
+            - {name: fint.adapter.endpoints.providers.kodeverk, value: https://api.felleskomponent.no/arkiv/kodeverk/provider}
+            - {name: fint.adapter.endpoints.providers.noark, value: https://api.felleskomponent.no/arkiv/noark/provider}
+            - {name: fint.adapter.endpoints.providers.kulturminne, value: https://api.felleskomponent.no/arkiv/kulturminnevern/provider}
