@@ -88,11 +88,11 @@ jobs:
           resource-group: rg-aks-${{ steps.environment.outputs.name }}
           admin: true
 
-      - if: github.ref != 'refs/heads/master' && matrix.deploy-every-branch != true
+      - if: github.ref != 'refs/heads/${{ github.base_ref }}' && matrix.deploy-every-branch != true
         run: |
           {
             echo "## Dry run - not a real deploy"
-            echo "To deploy, merge to master." 
+            echo "To deploy, merge to ${{ github.base_ref }}." 
           } >> $GITHUB_STEP_SUMMARY
 
       - name: Output kubectl diff summary
@@ -113,7 +113,7 @@ jobs:
           echo "name=$namespace" >> $GITHUB_OUTPUT
 
       - name: Deploy to Kubernetes
-        if: github.ref == 'refs/heads/master' || matrix.deploy-every-branch == true
+        if: github.ref == 'refs/heads/${{ github.base_ref }}' || matrix.deploy-every-branch == true
         uses: azure/k8s-deploy@v4
         with:
           action: deploy
