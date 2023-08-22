@@ -27,6 +27,10 @@ spec:
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.kulturminneid, value: '${kulturminneId}' }
+            - {name: fint.case.formats.title.dispensasjonautomatiskfredakulturminne, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}' }
+            - {name: fint.case.formats.field.dispensasjonautomatiskfredakulturminne.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
+            - {name: fint.case.formats.field.dispensasjonautomatiskfredakulturminne.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            - {name: fint.case.formats.field.dispensasjonautomatiskfredakulturminne.kulturminneid, value: '${kulturminneId}' }
             - {name: fint.internal-files.connection-string, valueFrom: {secretKeyRef: {name: stfint, key: connection-string}}}
             - {name: spring.data.mongodb.uri, valueFrom: {secretKeyRef: {name: fint-mongo-db, key: mongodb}}}
             - {name: spring.data.mongodb.database, value: 'svarut-faks'}
