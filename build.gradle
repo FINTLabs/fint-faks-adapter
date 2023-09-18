@@ -46,7 +46,7 @@ dependencies {
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
 
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.5')
+    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.6.2')
     compile('org.apache.cxf:cxf-rt-transports-http:3.5.5')
     compile('org.apache.cxf:cxf-rt-ws-security:3.5.5')
     compile('org.bouncycastle:bcpkix-jdk15on:1.70')
