@@ -47,17 +47,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        org: [ bym-oslo-kommune-no ]
-        cluster: [ aks-beta-fint-2021-11-23, aks-api-fint-2022-02-08 ]
+        org: [ bya-oslo-kommune-no, bym-oslo-kommune-no, samediggi-no ]
+        cluster: [ aks-api-fint-2022-02-08 ]
         include:
-          - cluster: aks-beta-fint-2021-11-23
-            deploy-every-branch: true
-
-          - org: bya-oslo-kommune-no
-            cluster: aks-api-fint-2022-02-08
-
           - org: samediggi-no
             cluster: aks-api-fint-2022-02-08
+            deploy-every-branch: true
 
     steps:
       - uses: actions/checkout@v4
