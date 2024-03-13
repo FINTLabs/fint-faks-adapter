@@ -6,7 +6,6 @@ import no.fint.event.model.ResponseStatus;
 import no.fint.model.arkiv.noark.NoarkActions;
 import no.fint.model.resource.FintLinks;
 import no.fint.provider.fiks.exception.GetSakNotFoundException;
-import no.fint.provider.fiks.exception.GetTilskuddFartoyNotFoundException;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
 import no.fint.provider.fiks.service.fint.SakFactory;
 import org.springframework.stereotype.Service;
