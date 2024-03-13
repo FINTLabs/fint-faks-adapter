@@ -28,16 +28,7 @@ public class TilskuddFredaBygningPrivatEieFactory extends SaksmappeFactory {
         resource.setSoknadsnummer(new Identifikator());
         resource.setMatrikkelnummer(new MatrikkelnummerResource());
 
-        log.debug("Let's try to make som FINT goodies, based on these fax shipment values: {} (id), {} (caseId), {} (applicationId)",
-                faxShipment.getId(),
-                faxShipment.getCaseId(),
-                faxShipment.getApplicationId());
-
-        if (faxShipment.getTitle() == null) {
-            log.info("We're currently dealing with a null title in this fax shipment.");
-        } else {
-            log.debug("This fax shipment comes with the following title: {}", faxShipment.getTitle());
-        }
+        log.debug("Let's try to make som FINT goodies, based on this fax shipment: {}", faxShipment);
 
         updateSaksmappeFromFaxShipment(caseProperties, faxShipment, resource);
 

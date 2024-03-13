@@ -20,10 +20,15 @@ spec:
             - {name: security.basic.enabled, value: "false"}
             - {name: fint.adapter.reject-unknown-events, value: 'false'}
 
-            - {name: fint.case.formats.title.tilskuddfartoy, value: 'Tilskudd - ${kallesignal} - ${fartoyNavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}'}
-            - {name: fint.case.formats.field.tilskuddfartoy.fartoy, value: '${kallesignal} ${fartoyNavn}' }
-            - {name: fint.case.formats.field.tilskuddfartoy.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
-            - {name: fint.case.formats.field.tilskuddfartoy.kulturminneid, value: '${kulturminneId}' }
+            - {name: fint.case.defaults.tilskuddfartoy.title.cases, value: 'Tilskudd - ${kallesignal} - ${fartoyNavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}' }
+            - {name: fint.case.defaults.field.tilskuddfartoy.fartoy, value: '${kallesignal} ${fartoyNavn}' }
+            - {name: fint.case.defaults.field.tilskuddfartoy.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            - {name: fint.case.defaults.field.tilskuddfartoy.kulturminneid, value: '${kulturminneId}' }
+
+            #- {name: fint.case.formats.title.tilskuddfartoy, value: 'Tilskudd - ${kallesignal} - ${fartoyNavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}'}
+            #- {name: fint.case.formats.field.tilskuddfartoy.fartoy, value: '${kallesignal} ${fartoyNavn}' }
+            #- {name: fint.case.formats.field.tilskuddfartoy.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
+            #- {name: fint.case.formats.field.tilskuddfartoy.kulturminneid, value: '${kulturminneId}' }
 
             - {name: fint.case.formats.title.tilskuddfredabygningprivateie, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${bygningsnavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}'}
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
