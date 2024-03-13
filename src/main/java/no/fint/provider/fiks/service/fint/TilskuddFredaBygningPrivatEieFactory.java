@@ -1,5 +1,6 @@
 package no.fint.provider.fiks.service.fint;
 
+import lombok.extern.slf4j.Slf4j;
 import no.fint.arkiv.AdditionalFieldService;
 import no.fint.arkiv.CaseDefaults;
 import no.fint.arkiv.CaseProperties;
@@ -12,6 +13,7 @@ import no.fint.provider.fiks.service.fiks.FiksService;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class TilskuddFredaBygningPrivatEieFactory extends SaksmappeFactory {
 
     private final CaseProperties caseProperties;
@@ -25,6 +27,17 @@ public class TilskuddFredaBygningPrivatEieFactory extends SaksmappeFactory {
         TilskuddFredaBygningPrivatEieResource resource = new TilskuddFredaBygningPrivatEieResource();
         resource.setSoknadsnummer(new Identifikator());
         resource.setMatrikkelnummer(new MatrikkelnummerResource());
+
+        log.debug("Let's try to make som FINT goodies, based on these fax shipment values: {} (id), {} (caseId), {} (applicationId)",
+                faxShipment.getId(),
+                faxShipment.getCaseId(),
+                faxShipment.getApplicationId());
+
+        if (faxShipment.getTitle() == null) {
+            log.info("We're currently dealing with a null title in this fax shipment.");
+        } else {
+            log.debug("This fax shipment comes with the following title: {}", faxShipment.getTitle());
+        }
 
         updateSaksmappeFromFaxShipment(caseProperties, faxShipment, resource);
 
