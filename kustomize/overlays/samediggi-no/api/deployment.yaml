@@ -25,8 +25,7 @@ spec:
             - {name: fint.case.formats.field.tilskuddfartoy.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
             - {name: fint.case.formats.field.tilskuddfartoy.kulturminneid, value: '${kulturminneId}' }
 
-            #- {name: fint.case.formats.title.tilskuddfredabygningprivateie, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${bygningsnavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}'}
-            - {name: fint.case.formats.title.tilskuddfredabygningprivateie, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${bygningsnavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi}'}
+            - {name: fint.case.formats.title.tilskuddfredabygningprivateie, value: 'Tilskudd - ${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer} - ${bygningsnavn} - ${kulturminneId} - ${soknadsnummer.identifikatorverdi} - ${tittel}'}
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.matrikkel, value: '${matrikkelnummer.gardsnummer}/${matrikkelnummer.bruksnummer}' }
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
             - {name: fint.case.formats.field.tilskuddfredabygningprivateie.kulturminneid, value: '${kulturminneId}' }
