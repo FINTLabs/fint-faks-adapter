@@ -7,13 +7,18 @@ spec:
     spec:
       containers:
         - name: faks-adapter
+          resources:
+            limits:
+              memory: "4Gi"
+            requests:
+              memory: "3Gi"
           envFrom:
             - secretRef:
                 name: faks-adapter-samediggi
           env:
             - name: JAVA_TOOL_OPTIONS
               value: >-
-                -Xmx1G -verbose:gc
+                -Xmx3G -verbose:gc
                 -XX:+ExitOnOutOfMemoryError
                 -Dfile.encoding=UTF-8
             - {name: springfox.title, value: "SvarUt (Faks) Adapter for Samediggi / Sametinget"}
