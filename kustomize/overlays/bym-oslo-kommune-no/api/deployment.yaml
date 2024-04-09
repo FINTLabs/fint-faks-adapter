@@ -2,13 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adapter-faks
+  namespace: bym-oslo-kommune-no
 spec:
   template:
     spec:
       volumes:
         - name: certificate
           secret:
-            secretName: faks-adapter-bym-oslo
+            secretName: faks-adapter-onepassword
       containers:
         - name: faks-adapter
           volumeMounts:
@@ -16,14 +17,16 @@ spec:
               mountPath: /secrets
           envFrom:
             - secretRef:
-                name: faks-adapter-bym-oslo
+                name: faks-adapter-onepassword
           env:
             - {name: springfox.title, value: "SvarUt (Faks) Adapter for Oslo kommune bymiljøetaten"}
             - {name: fint.adapter.organizations, value: bym.oslo.kommune.no}
             - {name: fint.adapter.reject-unknown-events, value: 'false'}
+
             - {name: fint.case.defaults.soknaddrosjeloyve.title.cases, value: 'Drosjeløyvesøknad: ${organisasjonsnavn}'}
-            - {name: spring.data.mongodb.database, value: 'svarut-faks'}
+
             - {name: fint.adapter.endpoints.providers.kodeverk, value: https://api.felleskomponent.no/arkiv/kodeverk/provider}
             - {name: fint.adapter.endpoints.providers.noark, value: https://api.felleskomponent.no/arkiv/noark/provider}
             - {name: fint.adapter.endpoints.providers.samferdsel, value: https://api.felleskomponent.no/arkiv/samferdsel/provider}
+
             - {name: logging.level.no.fint, value: "trace"}
