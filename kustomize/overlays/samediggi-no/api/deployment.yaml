@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adapter-faks
+  namespace: samediggi-no
 spec:
   template:
     spec:
@@ -14,7 +15,7 @@ spec:
               memory: "3Gi"
           envFrom:
             - secretRef:
-                name: faks-adapter-samediggi
+                name: faks-adapter-onepassword
           env:
             - name: JAVA_TOOL_OPTIONS
               value: >-
