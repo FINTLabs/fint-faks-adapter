@@ -41,10 +41,6 @@ spec:
             - {name: fint.case.defaults.field.dispensasjonautomatiskfredakulturminne.soknadsnummer, value: '${soknadsnummer.identifikatorverdi}' }
             - {name: fint.case.defaults.field.dispensasjonautomatiskfredakulturminne.kulturminneid, value: '${kulturminneId}' }
 
-            - {name: fint.internal-files.connection-string, valueFrom: {secretKeyRef: {name: stfint, key: connection-string}}}
-            - {name: spring.data.mongodb.uri, valueFrom: {secretKeyRef: {name: fint-mongo-db, key: mongodb}}}
-            - {name: spring.data.mongodb.database, value: 'svarut-faks'}
-
             - {name: fint.adapter.endpoints.providers.kodeverk, value: https://api.felleskomponent.no/arkiv/kodeverk/provider}
             - {name: fint.adapter.endpoints.providers.noark, value: https://api.felleskomponent.no/arkiv/noark/provider}
             - {name: fint.adapter.endpoints.providers.kulturminne, value: https://api.felleskomponent.no/arkiv/kulturminnevern/provider}
