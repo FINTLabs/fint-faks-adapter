@@ -8,12 +8,12 @@ resources:
   - onepassword.yaml
 
 commonLabels:
-  app.kubernetes.io/instance: adapter-faks_samediggi-no
+  app.kubernetes.io/instance: adapter-arkiv-faks_samediggi-no
   fintlabs.no/org-id: samediggi.no
 
 patches:
 
   - target:
       kind: Deployment
-      name: adapter-faks
+      name: adapter-arkiv-faks
     path: deployment.yaml

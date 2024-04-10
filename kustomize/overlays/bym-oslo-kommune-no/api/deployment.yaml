@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adapter-faks
+  name: adapter-arkiv-faks
   namespace: bym-oslo-kommune-no
 spec:
   template:
@@ -11,7 +11,7 @@ spec:
           secret:
             secretName: faks-adapter-onepassword
       containers:
-        - name: faks-adapter
+        - name: adapter-arkiv-faks
           volumeMounts:
             - name: certificate
               mountPath: /secrets

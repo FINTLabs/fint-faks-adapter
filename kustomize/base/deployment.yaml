@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adapter-faks
+  name: adapter-arkiv-faks
 spec:
   selector:
     matchLabels:
-      app: adapter-faks
+      app: adapter-arkiv-faks
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: adapter-faks
+        app: adapter-arkiv-faks
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8091"
@@ -19,7 +19,7 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - name: faks-adapter
+        - name: adapter-arkiv-faks
           image: ghcr.io/fintlabs/fint-faks-adapter:empty
           resources:
             limits:
@@ -36,9 +36,6 @@ spec:
               port: 8091
             initialDelaySeconds: 10
             timeoutSeconds: 5
-          envFrom:
-            - secretRef:
-                name: faks-adapter-bym-oslo
           env:
             - {name: TZ, value: Europe/Oslo}
             - name: JAVA_TOOL_OPTIONS

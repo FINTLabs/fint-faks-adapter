@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adapter-faks
+  name: adapter-arkiv-faks
   namespace: samediggi-no
 spec:
   template:
     spec:
       containers:
-        - name: faks-adapter
+        - name: adapter-arkiv-faks
           resources:
             limits:
               memory: "4Gi"

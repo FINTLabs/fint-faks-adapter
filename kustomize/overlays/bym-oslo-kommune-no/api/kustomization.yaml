@@ -8,12 +8,12 @@ resources:
   - onepassword.yaml
 
 commonLabels:
-  app.kubernetes.io/instance: adapter-faks_bym-oslo-kommune-no
+  app.kubernetes.io/instance: adapter-arkiv-faks_bym-oslo-kommune-no
   fintlabs.no/org-id: bym.oslo.kommune.no
 
 patches:
 
   - target:
       kind: Deployment
-      name: adapter-faks
+      name: adapter-arkiv-faks
     path: deployment.yaml
