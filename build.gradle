@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.ben-manes.versions' version '0.21.0'
+    id 'com.github.ben-manes.versions' version '0.27.0'
     id "no.nils.wsdl2java" version "0.10"
 
 }
@@ -46,7 +46,7 @@ dependencies {
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
 
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.5')
+    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.6')
     compile('org.apache.cxf:cxf-rt-transports-http:3.5.5')
     compile('org.apache.cxf:cxf-rt-ws-security:3.5.5')
     compile('org.bouncycastle:bcpkix-jdk15on:1.70')
@@ -57,9 +57,11 @@ dependencies {
     compile('org.apache.commons:commons-lang3:3.12.0')
     compile('org.apache.jena:jena-arq:3.12.0')
     compile('org.apache.tika:tika-core:1.28.5')
+
     compile('org.glassfish.jersey.core:jersey-client:2.41')
     compile('org.glassfish.jersey.core:jersey-common:2.41')
-    compile('org.jooq:jool-java-8:0.9.14')
+    compile('org.jooq:jool-java-8:0.9.15')
+
     compile('org.projectlombok:lombok:1.18.26')
 
     compile 'no.fint:fint-model-resource:0.4.1'

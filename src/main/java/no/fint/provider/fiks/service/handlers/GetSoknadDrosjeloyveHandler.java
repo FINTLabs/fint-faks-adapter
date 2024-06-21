@@ -5,6 +5,7 @@ import no.fint.event.model.Event;
 import no.fint.event.model.ResponseStatus;
 import no.fint.model.arkiv.samferdsel.SamferdselActions;
 import no.fint.model.resource.FintLinks;
+import no.fint.provider.fiks.exception.GetSakNotFoundException;
 import no.fint.provider.fiks.exception.GetSoknadDrosjeloyveNotFoundException;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
 import no.fint.provider.fiks.service.fint.SoknadDrosjeloyveFactory;
@@ -35,7 +36,7 @@ public class GetSoknadDrosjeloyveHandler implements Handler {
         try {
             response.setData(ImmutableList.of(soknadDrosjeloyveFactory.toFintResource(queryService.query(response.getOrgId(), query))));
             response.setResponseStatus(ResponseStatus.ACCEPTED);
-        } catch (GetSoknadDrosjeloyveNotFoundException e) {
+        } catch (GetSoknadDrosjeloyveNotFoundException | GetSakNotFoundException e) {
             response.setResponseStatus(ResponseStatus.REJECTED);
             response.setStatusCode("NOT_FOUND");
             response.setMessage(e.getMessage());
