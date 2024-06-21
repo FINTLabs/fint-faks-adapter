@@ -5,6 +5,7 @@ import no.fint.event.model.Event;
 import no.fint.event.model.ResponseStatus;
 import no.fint.model.arkiv.kulturminnevern.KulturminnevernActions;
 import no.fint.model.resource.FintLinks;
+import no.fint.provider.fiks.exception.GetSakNotFoundException;
 import no.fint.provider.fiks.exception.GetTilskuddFartoyNotFoundException;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
 import no.fint.provider.fiks.service.fint.TilskuddFartoyFactory;
@@ -35,7 +36,7 @@ public class GetTilskuddFartoyHandler implements Handler {
         try {
             response.setData(ImmutableList.of(tilskuddFartoyFactory.toFintResource(queryService.query(response.getOrgId(), query))));
             response.setResponseStatus(ResponseStatus.ACCEPTED);
-        } catch (GetTilskuddFartoyNotFoundException e) {
+        } catch (GetTilskuddFartoyNotFoundException | GetSakNotFoundException e) {
             response.setResponseStatus(ResponseStatus.REJECTED);
             response.setStatusCode("NOT_FOUND");
             response.setMessage(e.getMessage());

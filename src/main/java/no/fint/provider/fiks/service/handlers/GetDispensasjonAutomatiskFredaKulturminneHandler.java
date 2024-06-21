@@ -6,6 +6,7 @@ import no.fint.event.model.ResponseStatus;
 import no.fint.model.arkiv.kulturminnevern.KulturminnevernActions;
 import no.fint.model.resource.FintLinks;
 import no.fint.provider.fiks.exception.GetDispensasjonAutomatiskFredaKulturminneNotFoundException;
+import no.fint.provider.fiks.exception.GetSakNotFoundException;
 import no.fint.provider.fiks.service.fint.DispensasjonAutomatiskFredaKulturminneFactory;
 import no.fint.provider.fiks.service.fint.FaxQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class GetDispensasjonAutomatiskFredaKulturminneHandler implements Handler
             response.setData(ImmutableList.of(dispensasjonAutomatiskFredaKulturminneFactory
                     .toFintResource(queryService.query(response.getOrgId(), query))));
             response.setResponseStatus(ResponseStatus.ACCEPTED);
-        } catch (GetDispensasjonAutomatiskFredaKulturminneNotFoundException e) {
+        } catch (GetDispensasjonAutomatiskFredaKulturminneNotFoundException | GetSakNotFoundException e) {
             response.setResponseStatus(ResponseStatus.REJECTED);
             response.setStatusCode("NOT_FOUND");
             response.setMessage(e.getMessage());

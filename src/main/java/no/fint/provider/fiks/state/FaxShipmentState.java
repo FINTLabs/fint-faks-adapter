@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import no.fint.arkiv.CaseProperties;
 import no.fint.model.resource.arkiv.noark.SaksmappeResource;
 import no.fint.provider.fiks.SvarUtConfiguration;
-import no.fint.provider.fiks.exception.GetTilskuddFartoyNotFoundException;
+import no.fint.provider.fiks.exception.GetSakNotFoundException;
 import no.fint.provider.fiks.model.FaxShipment;
 import no.fint.provider.fiks.model.ShipmentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class FaxShipmentState {
     public FaxShipment getById(String orgId, String id) {
         FaxShipment faxShipment = faxShipmentRepository.findByOrgIdAndId(orgId, id);
         if (faxShipment == null) {
-            throw new GetTilskuddFartoyNotFoundException("Case could not be found by ID " + id);
+            throw new GetSakNotFoundException("Case could not be found by ID " + id);
         }
         if (faxShipment.getCaseId() == null) {
             save(faxShipment);
@@ -43,7 +43,7 @@ public class FaxShipmentState {
     public FaxShipment getByApplicationId(String orgId, String applicationId) {
         FaxShipment faxShipment = faxShipmentRepository.findByOrgIdAndApplicationId(orgId, applicationId);
         if (faxShipment == null) {
-            throw new GetTilskuddFartoyNotFoundException("Case could not be found by application Id " + applicationId);
+            throw new GetSakNotFoundException("Case could not be found by application Id " + applicationId);
         }
         if (faxShipment.getCaseId() == null) {
             save(faxShipment);
@@ -55,7 +55,7 @@ public class FaxShipmentState {
         FaxShipment faxShipment = faxShipmentRepository.findByOrgIdAndCaseId(orgId, caseId);
         log.info("faxShipment: {}", faxShipment);
         if (faxShipment == null) {
-            throw new GetTilskuddFartoyNotFoundException("Case could not be found by Case ID " + caseId);
+            throw new GetSakNotFoundException("Case could not be found by Case ID " + caseId);
         }
         return faxShipment;
     }
