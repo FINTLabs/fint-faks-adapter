@@ -48,7 +48,7 @@ dependencies {
 
     // Version 3.5.6 is the latest we got to run with Java 8
     compile('org.apache.cxf:cxf-rt-transports-http:3.5.6')
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.6')
+    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.6.3')
     compile('org.apache.cxf:cxf-rt-ws-security:3.5.6')
     
     compile('org.bouncycastle:bcpkix-jdk15on:1.70')
