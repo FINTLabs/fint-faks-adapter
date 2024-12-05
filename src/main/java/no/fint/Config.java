@@ -1,5 +1,6 @@
 package no.fint;
 
+import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import no.fint.oauth.OAuthTokenProps;
@@ -27,6 +28,11 @@ public class Config {
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new ISO8601DateFormat());
+
+        objectMapper.getFactory().setStreamReadConstraints(StreamReadConstraints.builder()
+                .maxStringLength(Integer.MAX_VALUE)
+                .build());
+
         return objectMapper;
     }
 
