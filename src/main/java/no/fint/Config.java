@@ -19,8 +19,16 @@ import java.util.concurrent.Executors;
 
 @Configuration
 public class Config {
+
+    static {
+        StreamReadConstraints
+                .overrideDefaultStreamReadConstraints(StreamReadConstraints.builder()
+                        .maxStringLength(Integer.MAX_VALUE).build());
+    }
+
     @ConditionalOnProperty(name = OAuthTokenProps.ENABLE_OAUTH,
             matchIfMissing = true, havingValue = "false")
+
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
@@ -28,11 +36,7 @@ public class Config {
 
     @Bean
     public ObjectMapper objectMapper() {
-        JsonFactory factory = JsonFactory.builder()
-                .streamReadConstraints(StreamReadConstraints.builder()
-                        .maxStringLength(Integer.MAX_VALUE).build()).build();
-
-        ObjectMapper objectMapper = new ObjectMapper(factory);
+        ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setDateFormat(new ISO8601DateFormat());
 
         return objectMapper;
