@@ -1,9 +1,11 @@
 package no.fint;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.StreamReadConstraints;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import no.fint.oauth.OAuthTokenProps;
+import org.opensaml.xmlsec.signature.J;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,12 +28,12 @@ public class Config {
 
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setDateFormat(new ISO8601DateFormat());
+        JsonFactory factory = JsonFactory.builder()
+                .streamReadConstraints(StreamReadConstraints.builder()
+                        .maxStringLength(Integer.MAX_VALUE).build()).build();
 
-        objectMapper.getFactory().setStreamReadConstraints(StreamReadConstraints.builder()
-                .maxStringLength(Integer.MAX_VALUE)
-                .build());
+        ObjectMapper objectMapper = new ObjectMapper(factory);
+        objectMapper.setDateFormat(new ISO8601DateFormat());
 
         return objectMapper;
     }
