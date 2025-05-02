@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: adapter-arkiv-faks
+        observability.fintlabs.no/loki: "true"
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8091"
