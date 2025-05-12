@@ -56,9 +56,9 @@ public class SseInitializer {
                             FintEventListener fintEventListener = new FintEventListener(component, eventHandlerService);
                             fintSse.connect(fintEventListener, ImmutableMap.of(
                                     HeaderConstants.ORG_ID, orgId,
-                                    HeaderConstants.CLIENT, "faks-adapter",
+                                    HeaderConstants.CLIENT, "faks-adapter@" + orgId,
                                     "x-allowed-asset-ids", orgId
-                                    ));
+                            ));
                             sseClients.add(fintSse);
                         }));
     }
