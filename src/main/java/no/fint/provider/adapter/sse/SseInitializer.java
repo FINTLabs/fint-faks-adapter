@@ -54,7 +54,11 @@ public class SseInitializer {
                         .forEach((component, provider) -> {
                             FintSse fintSse = new FintSse(provider + endpoints.getSse(), tokenService, config);
                             FintEventListener fintEventListener = new FintEventListener(component, eventHandlerService);
-                            fintSse.connect(fintEventListener, ImmutableMap.of(HeaderConstants.ORG_ID, orgId, HeaderConstants.CLIENT, "springer-adapter"));
+                            fintSse.connect(fintEventListener, ImmutableMap.of(
+                                    HeaderConstants.ORG_ID, orgId,
+                                    HeaderConstants.CLIENT, "faks-adapter@" + orgId,
+                                    "x-allowed-asset-ids", orgId
+                            ));
                             sseClients.add(fintSse);
                         }));
     }
