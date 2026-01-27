@@ -66,15 +66,15 @@ dependencies {
 
     compile('org.projectlombok:lombok:1.18.26')
 
-    compile 'no.fint:fint-model-resource:0.4.1'
+    compile 'no.novari:fint-model-resource:1.0.1'
     compile('no.fint:fint-event-model:3.0.2')
     compile('no.fint:fint-relation-model:1.1.6')
     compile('no.fint:fint-spring-secrets:0.2.2')
     compile('no.fint:fint-sse:2.0.1')
 
-    compile('no.fintlabs:fint-arkiv-case-defaults:4.3.0')
-    compile("no.fint:fint-arkiv-resource-model-java:${apiVersion}")
-    compile("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
+    compile('no.novari:fint-arkiv-case-defaults:5.0.0')
+    compile("no.novari:fint-arkiv-resource-model-java:${apiVersion}")
+    compile("no.novari:fint-administrasjon-resource-model-java:${apiVersion}")
 
     compile('org.springframework.hateoas:spring-hateoas')
     runtime('org.springframework.plugin:spring-plugin-core')
@@ -131,7 +131,7 @@ jar {
     manifest {
         attributes(
                 "Manifest-Version": "1.0",
-                "Main-Class": "no.fint.Application",
+                "Main-Class": "no.novari.fint.Application",
                 "Specification-Version": "${apiVersion}",
                 "Implementation-Version": "${version}",
                 "Class-Path": configurations.runtime.collect { it.getName() }.join(' ')
@@ -156,7 +156,7 @@ wsdl2java {
     wsdlDir = file("$projectDir/src/main/resources/")
     locale = Locale.ENGLISH
     wsdlsToGenerate = [
-            ['-xjc-XtoString', '-client', '-p', 'no.fint.arkiv.fiks.svarut', "https://svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV10?wsdl"],
+            ['-xjc-XtoString', '-client', '-p', 'no.novari.fint.arkiv.fiks.svarut', "https://svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV10?wsdl"],
     ]
 }
 
