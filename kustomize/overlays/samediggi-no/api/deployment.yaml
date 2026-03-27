@@ -10,16 +10,16 @@ spec:
         - name: adapter-arkiv-faks
           resources:
             limits:
-              memory: "4Gi"
+              memory: "8Gi"
             requests:
-              memory: "3Gi"
+              memory: "6Gi"
           envFrom:
             - secretRef:
                 name: faks-adapter-onepassword
           env:
             - name: JAVA_TOOL_OPTIONS
               value: >-
-                -Xmx3G -verbose:gc
+                -Xmx6G -verbose:gc
                 -XX:+ExitOnOutOfMemoryError
                 -Dfile.encoding=UTF-8
             - {name: springfox.title, value: "SvarUt (Faks) Adapter for Samediggi / Sametinget"}
