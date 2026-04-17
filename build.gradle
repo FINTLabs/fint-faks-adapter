@@ -94,7 +94,7 @@ dependencies {
     compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.0.17.Final'
 
     compile('com.azure:azure-storage-blob:12.20.2')
-    compile 'io.projectreactor:reactor-core:3.5.2'
+    compile 'io.projectreactor:reactor-core:3.8.2'
 
     compile('com.fasterxml.jackson.core:jackson-annotations:2.21')
     compile('com.fasterxml.jackson.core:jackson-core:2.21.2')
