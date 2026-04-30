@@ -22,20 +22,9 @@ public class CaseIdFactory {
     }
 
     public String getCaseId(String orgId, int year) {
-        Criteria criteria = new Criteria().andOperator(
-                Criteria.where("orgId").is(orgId),
-                Criteria.where("year").is(year),
-                new Criteria().orOperator(
-                        Criteria.where("_class").is("no.fint.provider.fiks.model.CaseId"),
-                        Criteria.where("_class").is("no.novari.fint.provider.fiks.model.CaseId")
-                )
-        );
-
-        Query query = new Query().addCriteria(criteria);
-
-        Update update = new Update()
-                .setOnInsert(DEFAULT_TYPE_KEY, CaseId.class.getName()).inc("caseNumber", 1);
-
+        Query query = new Query().restrict(CaseId.class)
+                .addCriteria(Criteria.where("orgId").is(orgId).and("year").is(year));
+        Update update = new Update().setOnInsert(DEFAULT_TYPE_KEY, CaseId.class.getName()).inc("caseNumber", 1);
         FindAndModifyOptions options = FindAndModifyOptions.options().upsert(true).returnNew(true);
 
         final CaseId caseId = mongoOperations.findAndModify(query, update, options, CaseId.class);
