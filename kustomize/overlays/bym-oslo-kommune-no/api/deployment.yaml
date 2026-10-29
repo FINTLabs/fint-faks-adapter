@@ -29,4 +29,5 @@ spec:
             - { name: fint.adapter.endpoints.providers.noark, value: http://provider-arkiv-noark.default:8080/arkiv/noark/provider }
             - { name: fint.adapter.endpoints.providers.samferdsel, value: http://provider-arkiv-samferdsel.default:8080/arkiv/samferdsel/provider }
 
-            - {name: logging.level.no.fint, value: "info"}
+            - {name: logging.level.no.novari, value: "info"}
+            - {name: logging.level.no.novari.fint.provider.fiks.state, value: "debug"}
