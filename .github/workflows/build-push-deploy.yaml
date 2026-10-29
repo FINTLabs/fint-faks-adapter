@@ -13,7 +13,7 @@ permissions:
 jobs:
 
   build-push:
-    uses: fintlabs/shared-workflows/.github/workflows/java-gradle-build-push.yaml@main
+    uses: fintlabs/shared-workflows/.github/workflows/java-gradle-build-push.yaml@v0
     with:
       java-version: '8'
     secrets: inherit
