@@ -64,7 +64,7 @@ dependencies {
     compile('org.glassfish.jersey.core:jersey-common:2.48')
     compile('org.jooq:jool-java-8:0.9.15')
 
-    compile('org.projectlombok:lombok:1.18.26')
+    compile('org.projectlombok:lombok:1.18.48')
 
     compile 'no.novari:fint-model-resource:1.0.1'
     compile('no.fint:fint-event-model:3.0.2')
