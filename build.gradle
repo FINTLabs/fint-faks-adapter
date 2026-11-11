@@ -98,7 +98,7 @@ dependencies {
 
     compile('com.fasterxml.jackson.core:jackson-annotations:2.22')
     compile('com.fasterxml.jackson.core:jackson-core:2.21.2')
-    compile('com.fasterxml.jackson.core:jackson-databind:2.21.2')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.23.0')
     compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.4')
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.4')
     compile('org.slf4j:slf4j-api:1.7.36')
