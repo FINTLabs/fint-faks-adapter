@@ -24,7 +24,7 @@ class ApplicationSpec extends Specification {
     @Autowired
     TestRestTemplate http
 
-    def 'Application starts with SOAP and FINT OAuth and exposes existing monitoring paths'() {
+    def 'Application starts with REST and FINT OAuth and exposes existing monitoring paths'() {
         expect:
         http.getForEntity('/health', Map).body.status == 'UP'
         http.getForEntity('/prometheus', String).statusCodeValue == 200

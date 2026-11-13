@@ -13,19 +13,16 @@ This adapter integrates with KS FIKS SvarUT.
 | `fint.internal-files.directory`            | Location for `FILE` based internal files                                        | `file-cache` |                                                        
 | `fint.internal-files.connection-string`    | Azure connection string to storage account for `BLOB` based internal files      |              |
 | `fint.internal-files.type`                 | Location for internal files, `BLOB` or `FILE`.                                  |              |
-| `fint.fiks.svarut.service-url`             | `https://test.svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV11` |              |
-| `fint.fiks.svarut.username`                |                                                                                 |              |
-| `fint.fiks.svarut.password`                |                                                                                 |              |
+| `fint.fiks.svarut.service-url`             | `https://test.svarut.ks.no/api` |              |
 | `fint.fiks.svarut.connection-timeout`      | `120000`                                                                        |              |
 | `fint.fiks.svarut.receive-timeout`         | `120000`                                                                        |              |
-| `fint.fiks.svarut.organisation.number`     |                                                                                 |              |
-| `fint.fiks.svarut.organisation.name`       |                                                                                 |              |
-| `fint.fiks.svarut.organisation.adresse1`   |                                                                                 |              |
-| `fint.fiks.svarut.organisation.adresse2`   | ''                                                                              |              |
-| `fint.fiks.svarut.organisation.adresse3`   | ''                                                                              |              |
-| `fint.fiks.svarut.organisation.postalcode` |                                                                                 |              |
-| `fint.fiks.svarut.organisation.city`       |                                                                                 |              |
-| `fint.fiks.svarut.leveringsmetode`         | `KUN_DIGITAL_UTEN_LEVERANSEGARANTI_MASSEUTSENDELSE`                             |              |
+| `fint.fiks.svarut.organization.number`     |                                                                                 |              |
+| `fint.fiks.svarut.organization.name`       |                                                                                 |              |
+| `fint.fiks.svarut.organization.address1`   |                                                                                 |              |
+| `fint.fiks.svarut.organization.address2`   | ''                                                                              |              |
+| `fint.fiks.svarut.organization.address3`   | ''                                                                              |              |
+| `fint.fiks.svarut.organization.postal-code` |                                                                                 |              |
+| `fint.fiks.svarut.organization.city`       |                                                                                 |              |
 
 
 ## More information on configuration
