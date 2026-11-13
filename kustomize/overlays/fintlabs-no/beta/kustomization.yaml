@@ -1,15 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: bya-oslo-kommune-no
+namespace: fintlabs-no
 
 resources:
   - ../../../base
   - onepassword.yaml
 
 commonLabels:
-  app.kubernetes.io/instance: adapter-arkiv-faks_bya-oslo-kommune-no
-  fintlabs.no/org-id: bya.oslo.kommune.no
+  app.kubernetes.io/instance: adapter-arkiv-faks_fintlabs-no
+  fintlabs.no/org-id: fintlabs.noo
 
 patches:
 
