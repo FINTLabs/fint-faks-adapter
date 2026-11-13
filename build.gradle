@@ -1,30 +1,54 @@
-buildscript {
-    ext {
-        springBootVersion = '1.5.22.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 plugins {
-    id 'com.github.ben-manes.versions' version '0.27.0'
-    id "no.nils.wsdl2java" version "0.10"
-
+    id 'java'
+    id 'groovy'
+    // shortcut: Keep javax compatibility for SOAP and FINT OAuth; revisit during the REST migration.
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.github.ben-manes.versions' version '0.52.0'
 }
 
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'maven'
-apply plugin: 'org.springframework.boot'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
+configurations {
+    cxfCodegen
+}
+
+ext['embedded-mongo.version'] = '4.33.0'
+// shortcut: Patch the Boot 2.7 dependency set; replace these overrides with the Spring migration.
+ext['spring-framework.version'] = '5.3.39'
+ext['spring-security.version'] = '5.8.16'
+ext['tomcat.version'] = '9.0.123'
+ext['logback.version'] = '1.2.13'
+ext['log4j2.version'] = '2.26.1'
+ext['jackson-bom.version'] = '2.23.0'
+ext['netty.version'] = '4.2.20.Final'
+ext['reactor-bom.version'] = '2025.0.8'
+ext['snakeyaml.version'] = '2.7'
+ext['hibernate-validator.version'] = '6.2.6.Final'
+ext['json-path.version'] = '2.10.0'
+ext['json-smart.version'] = '2.6.1'
+ext['commons-lang3.version'] = '3.21.0'
+ext['micrometer.version'] = '1.16.8'
+ext['mongodb.version'] = '4.11.5'
+ext['assertj.version'] = '3.27.7'
+ext['xmlunit2.version'] = '2.10.0'
+
+dependencyManagement {
+    dependencies {
+        dependency 'org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE'
+        dependency 'org.ow2.asm:asm:9.11.1'
+        dependency 'commons-beanutils:commons-beanutils:1.11.0'
+        dependency 'org.objenesis:objenesis:3.6'
+    }
+}
 
 javadoc {
     source = sourceSets.main.allJava
-    classpath = configurations.runtime
+    classpath = configurations.runtimeClasspath
     options.windowTitle = 'Fake Personnel Adapter'
     options.memberLevel = JavadocMemberLevel.PRIVATE
     destinationDir = file('./javadocs/')
@@ -40,87 +64,85 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
+    implementation 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
 
-    // enable extension support for wsdl2java
-    wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics-runtime:1.11.1'
-    wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
+    cxfCodegen 'org.apache.cxf:cxf-tools-wsdlto-frontend-jaxws:3.6.13'
+    cxfCodegen 'org.apache.cxf:cxf-tools-wsdlto-databinding-jaxb:3.6.13'
+    cxfCodegen 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
+    cxfCodegen 'jakarta.xml.ws:jakarta.xml.ws-api:2.3.3'
+    cxfCodegen 'jakarta.annotation:jakarta.annotation-api:1.3.5'
 
-    // Version 3.5.6 is the latest we got to run with Java 8
-    compile('org.apache.cxf:cxf-rt-transports-http:3.5.6')
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.6')
-    compile('org.apache.cxf:cxf-rt-ws-security:3.5.6')
+    implementation('org.apache.cxf:cxf-rt-transports-http:3.6.13')
+    implementation('org.apache.cxf:cxf-rt-frontend-jaxws:3.6.13')
+    implementation('org.apache.cxf:cxf-rt-ws-security:3.6.13')
+    implementation('jakarta.xml.ws:jakarta.xml.ws-api:2.3.3')
+    implementation('jakarta.jws:jakarta.jws-api:2.1.0')
     
-    compile('org.bouncycastle:bcpkix-jdk15on:1.70')
-    compile('org.bouncycastle:bcprov-jdk15on:1.70')
-    compile('commons-io:commons-io:2.17.0')
+    implementation('org.bouncycastle:bcpkix-jdk18on:1.87')
+    implementation('org.bouncycastle:bcprov-jdk18on:1.87')
+    implementation('commons-io:commons-io:2.22.0')
 
-    compile('com.google.guava:guava:31.1-jre')
-    compile('org.apache.commons:commons-lang3:3.14.0')
-    compile('org.apache.jena:jena-arq:3.17.0')
-    compile('org.apache.tika:tika-core:1.28.5')
+    implementation('com.google.guava:guava:33.8.0-jre')
+    implementation('org.apache.commons:commons-lang3')
+    implementation('org.apache.tika:tika-core:3.3.3')
 
-    compile('org.glassfish.jersey.core:jersey-client:2.48')
-    compile('org.glassfish.jersey.core:jersey-common:2.48')
-    compile('org.jooq:jool-java-8:0.9.16')
+    implementation('org.glassfish.jersey.core:jersey-client:2.48')
+    implementation('org.glassfish.jersey.core:jersey-common:2.48')
+    implementation('org.jooq:jool-java-8:0.9.16')
 
-    compile('org.projectlombok:lombok:1.18.48')
+    compileOnly 'org.projectlombok:lombok:1.18.48'
+    annotationProcessor 'org.projectlombok:lombok:1.18.48'
 
-    compile 'no.novari:fint-model-resource:1.0.1'
-    compile('no.fint:fint-event-model:3.0.2')
-    compile('no.fint:fint-relation-model:1.1.6')
-    compile('no.fint:fint-spring-secrets:0.2.2')
-    compile('no.fint:fint-sse:2.0.1')
+    implementation 'no.novari:fint-model-resource:1.0.1'
+    implementation('no.fint:fint-event-model:3.0.2')
+    implementation('no.fint:fint-relation-model:1.1.6')
+    implementation('no.fint:fint-spring-secrets:0.2.2')
+    implementation('no.fint:fint-sse:2.0.1')
 
-    compile('no.novari:fint-arkiv-case-defaults:5.0.0')
-    compile("no.novari:fint-arkiv-resource-model-java:${apiVersion}")
-    compile("no.novari:fint-administrasjon-resource-model-java:${apiVersion}")
+    implementation('no.novari:fint-arkiv-case-defaults:5.0.0')
+    implementation("no.novari:fint-arkiv-resource-model-java:${apiVersion}")
+    implementation("no.novari:fint-administrasjon-resource-model-java:${apiVersion}")
 
-    compile('org.springframework.hateoas:spring-hateoas')
-    runtime('org.springframework.plugin:spring-plugin-core')
-    runtime('org.springframework.boot:spring-boot-actuator')
-    compile('io.micrometer:micrometer-registry-prometheus:1.16.5')
-    compile('io.micrometer:micrometer-spring-legacy:1.3.20')
-    compile('org.springframework.boot:spring-boot-devtools')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
-    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
+    implementation('org.springframework.hateoas:spring-hateoas')
+    runtimeOnly('org.springframework.plugin:spring-plugin-core')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation('io.micrometer:micrometer-registry-prometheus-simpleclient')
+    implementation('org.springframework.boot:spring-boot-devtools')
+    implementation('org.springframework.boot:spring-boot-starter-hateoas')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    // Spring adds validation-api 1.x and hibernate-validator 5.x by default, all three dependencies needed to override.
-    // Version 6.1.0 does not work :(
-    compile 'javax.validation:validation-api:2.0.1.Final'
-    compile 'org.hibernate.validator:hibernate-validator:6.0.17.Final'
-    compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.2.6.Final'
+    implementation('org.springframework.boot:spring-boot-starter-validation')
 
-    compile('com.azure:azure-storage-blob:12.20.2')
-    compile 'io.projectreactor:reactor-core:3.8.8'
+    implementation('com.azure:azure-storage-blob:12.20.2')
+    implementation 'io.projectreactor:reactor-core'
 
-    compile('com.fasterxml.jackson.core:jackson-annotations:2.22')
-    compile('com.fasterxml.jackson.core:jackson-core:2.21.2')
-    compile('com.fasterxml.jackson.core:jackson-databind:2.23.0')
-    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.4')
-    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.4')
-    compile('org.slf4j:slf4j-api:1.7.36')
+    implementation('com.fasterxml.jackson.core:jackson-annotations')
+    implementation('com.fasterxml.jackson.core:jackson-core')
+    implementation('com.fasterxml.jackson.core:jackson-databind')
+    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+    implementation('org.slf4j:slf4j-api:1.7.36')
 
-    testCompile('cglib:cglib-nodep:3.3.0')
-    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0')
+    testImplementation('net.bytebuddy:byte-buddy')
+    testImplementation('org.spockframework:spock-spring:2.3-groovy-3.0')
+    testImplementation('org.spockframework:spock-core:2.3-groovy-3.0')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring27x:${property('embedded-mongo.version')}")
 
-    compile 'commons-beanutils:commons-beanutils:1.9.4'
-    compile 'org.apache.commons:commons-text:1.15.0'
+    implementation 'commons-beanutils:commons-beanutils'
+    implementation 'org.apache.commons:commons-text:1.15.0'
 }
 
 task copyExternalDependencies(type: Copy) {
-    from configurations.runtime
+    from configurations.runtimeClasspath
     into "$buildDir/deps/external"
     exclude '**/fint-*.jar'
 }
 
 task copyFintDependencies(type: Copy) {
-    from configurations.runtime
+    from configurations.runtimeClasspath
     into "$buildDir/deps/fint"
     include '**/fint-*.jar'
 }
@@ -135,44 +157,46 @@ jar {
                 "Main-Class": "no.novari.fint.Application",
                 "Specification-Version": "${apiVersion}",
                 "Implementation-Version": "${version}",
-                "Class-Path": configurations.runtime.collect { it.getName() }.join(' ')
+                "Class-Path": configurations.runtimeClasspath.collect { it.getName() }.join(' ')
         )
     }
 }
-
-sourceCompatibility = 1.8
 
 import org.apache.tools.ant.filters.ReplaceTokens
 
 afterEvaluate {
     configure(processResources) {
         filesMatching('**/*.yml') {
-            filter(ReplaceTokens, tokens: [version: jar.version, title: jar.baseName])
+            filter(ReplaceTokens, tokens: [version: jar.archiveVersion.get(), title: jar.archiveBaseName.get()])
         }
     }
 }
 
-wsdl2java {
-    generatedWsdlDir = file('generated-sources')
-    wsdlDir = file("$projectDir/src/main/resources/")
-    locale = Locale.ENGLISH
-    wsdlsToGenerate = [
-            ['-xjc-XtoString', '-client', '-p', 'no.novari.fint.arkiv.fiks.svarut', "https://svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV10?wsdl"],
-    ]
+def generatedWsdlDir = layout.buildDirectory.dir('generated-sources/wsdl')
+def svarutWsdl = 'https://svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV10?wsdl'
+
+tasks.register('wsdl2java', JavaExec) {
+    javaLauncher = javaToolchains.launcherFor(java.toolchain)
+    classpath = configurations.cxfCodegen
+    mainClass = 'org.apache.cxf.tools.wsdlto.WSDLToJava'
+    inputs.property('wsdlUrl', svarutWsdl)
+    outputs.dir(generatedWsdlDir)
+    args '-xjc-XtoString', '-client', '-p', 'no.novari.fint.arkiv.fiks.svarut',
+            '-d', generatedWsdlDir.get().asFile.absolutePath, svarutWsdl
 }
 
-wsdl2javaExt {
-    cxfVersion = '3.5.5'
-    deleteGeneratedSourcesOnClean = true
-}
+sourceSets.main.java.srcDir(generatedWsdlDir)
+compileJava.dependsOn wsdl2java
 
-bootRepackage.enabled = false
+bootJar.enabled = false
+jar.archiveClassifier = ''
 
 bootRun {
     systemProperties System.properties
 }
 
 test {
+    useJUnitPlatform()
     testLogging {
         events 'passed', 'skipped', 'failed'
     }

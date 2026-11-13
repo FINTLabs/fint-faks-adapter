@@ -14,11 +14,13 @@ import no.novari.fint.provider.fiks.state.FaxShipmentRepository
 import no.novari.fint.provider.fiks.state.FaxShipmentState
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
+import org.springframework.test.context.ActiveProfiles
 import spock.lang.Specification
 
 import java.util.stream.Stream
 
 @DataMongoTest
+@ActiveProfiles('test')
 class FaxShipmentStateSpec extends Specification {
 
     @Autowired
@@ -29,6 +31,7 @@ class FaxShipmentStateSpec extends Specification {
     CaseProperties caseProperties
 
     void setup() {
+        faxShipmentRepository.deleteAll()
         TitleService titleService = Mock {
             _ * getCaseTitle(_, _) >> "The Test Title"
         }

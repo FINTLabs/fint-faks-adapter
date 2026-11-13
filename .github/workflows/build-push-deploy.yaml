@@ -15,7 +15,7 @@ jobs:
   build-push:
     uses: fintlabs/shared-workflows/.github/workflows/java-gradle-build-push.yaml@v0
     with:
-      java-version: '8'
+      java-version: '17'
     secrets: inherit
 
   prod:
