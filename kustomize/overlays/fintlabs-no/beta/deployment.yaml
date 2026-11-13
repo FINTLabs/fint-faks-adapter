@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adapter-arkiv-faks
+  namespace: fintlabs-no
+spec:
+  template:
+    spec:
+      containers:
+        - name: adapter-arkiv-faks
+          resources:
+            limits:
+              memory: "4Gi"
+            requests:
+              memory: "3Gi"
+          envFrom:
+            - secretRef:
+                name: faks-adapter-onepassword
+          env:
+            - { name: TZ, value: Europe/Oslo }
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -Xmx3G -verbose:gc
+                -XX:+ExitOnOutOfMemoryError
+                -Dfile.encoding=UTF-8
+            - { name: springfox.title, value: "SvarUt (Faks) Adapter" }
+            - { name: security.basic.enabled, value: "false" }
+
+            - { name: fint.adapter.organizations, value: fintlabs.no }
+            - { name: fint.adapter.reject-unknown-events, value: 'false' }
+
+            - { name: fint.fiks.svarut.service-url, value: "https://test.svarut.ks.no/api" }
+
+            - { name: fint.internal-files.type, value: 'BLOB' }
+
+            - { name: fint.adapter.endpoints.providers.kodeverk, value: http://provider-arkiv-kodeverk.default:8080/arkiv/kodeverk/provider }
+            - { name: fint.adapter.endpoints.providers.noark, value: http://provider-arkiv-noark.default:8080/arkiv/noark/provider }

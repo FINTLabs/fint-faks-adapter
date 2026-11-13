@@ -9,7 +9,6 @@ javadocs/
 adapter.log
 file-cache/
 generated-sources/
-application-*.yml
 /bin/
 /.classpath
 /.project
