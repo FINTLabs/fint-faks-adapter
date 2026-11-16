@@ -1,27 +1,12 @@
-FROM eclipse-temurin:8u504-b01-jdk AS builder
-
-ENV GRADLE_VERSION=4.10.3
-ENV GRADLE_HOME=/opt/gradle
-ENV PATH="${GRADLE_HOME}/bin:${PATH}"
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl unzip ca-certificates \
-    && curl -fsSL \
-       "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
-       -o /tmp/gradle.zip \
-    && mkdir -p /opt \
-    && unzip -q /tmp/gradle.zip -d /opt \
-    && mv "/opt/gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
-    && rm /tmp/gradle.zip \
-    && rm -rf /var/lib/apt/lists/*
+FROM eclipse-temurin:17-jdk-jammy AS builder
 
 WORKDIR /home/gradle
 
 USER root
 COPY . .
-RUN gradle --no-daemon build
+RUN ./gradlew --no-daemon build
 
-FROM eclipse-temurin:8u504-b01-jre
+FROM eclipse-temurin:17-jre-jammy
 
 ENV JAVA_TOOL_OPTIONS="-XX:+ExitOnOutOfMemoryError"
 

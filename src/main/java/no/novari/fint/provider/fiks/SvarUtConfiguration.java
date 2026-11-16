@@ -1,6 +1,7 @@
 package no.novari.fint.provider.fiks;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +12,29 @@ import java.nio.file.Path;
 @ConfigurationProperties("fint.fiks.svarut")
 public class SvarUtConfiguration {
     private String
-            serviceUrl = "https://svarut.ks.no/tjenester/forsendelseservice/ForsendelsesServiceV10",
-            username,
-            password,
+            serviceUrl = "https://test.svarut.ks.no/api",
+            kontoId,
+            integrasjonId,
+            integrasjonPassord,
             orgId;
 
     private int
             connectionTimeout = 120000,
             receiveTimeout = 120000,
             errorLimit = 5;
+
+    private boolean enabled = false;
+    private Maskinporten maskinporten = new Maskinporten();
+
+    @Data
+    public static class Maskinporten {
+        private String audience = "https://test.maskinporten.no/";
+        private String tokenEndpoint = "https://test.maskinporten.no/token";
+        private String clientId;
+        private String keyId;
+        @ToString.Exclude
+        private String privateKey;
+    }
 
     private Organization organization;
 

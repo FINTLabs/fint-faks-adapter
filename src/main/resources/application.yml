@@ -1,10 +1,6 @@
 server:
   port: 8091
 
-springfox:
-  title: '@title@'
-  version: '@version@'
-
 fint:
   adapter:
     endpoints:
@@ -20,19 +16,23 @@ fint:
   internal-files:
     directory: file-cache
 
-security:
-  basic:
-    enabled: false
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
 
 management:
-  security:
-    enabled: false
-
-endpoints:
-  enabled: false
-  health:
-    enabled: true
-  prometheus:
-    enabled: true
-  metrics:
-    enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /
+      exposure:
+        include: health,prometheus,metrics
+  endpoint:
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true

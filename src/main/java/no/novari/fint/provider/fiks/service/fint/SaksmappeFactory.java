@@ -4,7 +4,7 @@ import com.google.common.collect.Streams;
 import no.novari.fint.arkiv.AdditionalFieldService;
 import no.novari.fint.arkiv.CaseProperties;
 import no.novari.fint.arkiv.TitleService;
-import no.novari.fint.arkiv.fiks.svarut.ForsendelsesStatus;
+import no.novari.fint.provider.fiks.service.fiks.FiksService.ForsendelsesStatus;
 import no.novari.fint.model.arkiv.kodeverk.DokumentStatus;
 import no.novari.fint.model.resource.Link;
 import no.novari.fint.model.resource.arkiv.noark.*;
@@ -13,7 +13,7 @@ import no.novari.fint.provider.fiks.model.FaxShipment;
 import no.novari.fint.provider.fiks.model.ShipmentStatus;
 import no.novari.fint.provider.fiks.service.fiks.FiksService;
 
-import javax.xml.ws.soap.SOAPFaultException;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
@@ -80,15 +80,18 @@ public abstract class SaksmappeFactory {
         DokumentbeskrivelseResource dokumentbeskrivelseResource = new DokumentbeskrivelseResource();
         if (doc.getShipmentStatus().equals(ShipmentStatus.READY)) {
             dokumentbeskrivelseResource.addDokumentstatus(Link.with(DokumentStatus.class, "systemid", KLART_TIL_SVARUT));
-        } else {
+        } else if (doc.getShipmentStatus() == ShipmentStatus.SENT_TO_SVARUT && doc.getSvarUtShipmentId() != null) {
             try {
                 ForsendelsesStatus forsendelsesStatus = fiksService.getForsendelsesStatus(doc.getSvarUtShipmentId());
-                dokumentbeskrivelseResource.addDokumentstatus(Link.with(DokumentStatus.class, "systemid", forsendelsesStatus.getStatus().name()));
-                journalpostResource.setArkivertDato(forsendelsesStatus.getSisteStatusEndring().toGregorianCalendar().getTime());
-            } catch (SOAPFaultException e) {
-                dokumentbeskrivelseResource.setBeskrivelse(e.getMessage());
+                dokumentbeskrivelseResource.addDokumentstatus(Link.with(DokumentStatus.class, "systemid", forsendelsesStatus.status()));
+                journalpostResource.setArkivertDato(forsendelsesStatus.sisteStatusEndring());
+            } catch (RuntimeException e) {
+                dokumentbeskrivelseResource.setBeskrivelse("Unable to retrieve SvarUt status: " + e.getClass().getSimpleName());
             }
 
+        } else {
+            dokumentbeskrivelseResource.addDokumentstatus(Link.with(DokumentStatus.class, "systemid", doc.getShipmentStatus().name()));
+            dokumentbeskrivelseResource.setBeskrivelse(doc.getErrorMessage());
         }
         DokumentobjektResource dokumentobjektResource = new DokumentobjektResource();
         dokumentobjektResource.addReferanseDokumentfil(

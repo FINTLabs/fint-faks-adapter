@@ -49,13 +49,6 @@
     }
   },
   {
-    "kode": "SENDT_SDP",
-    "navn": "Forsendelsen er motatt og sendt til Sikker digital postkasse.",
-    "systemId": {
-      "identifikatorverdi": "SENDT_SDP"
-    }
-  },
-  {
     "kode": "LEVERT_SDP",
     "navn": "Forsendelsen er motatt og sendt til Sikker digital postkasse. Vi har motatt Leveringskvittering fra SDP. Forsendelsen skal da være tilgjengelig for mottaker.",
     "systemId": {
@@ -71,7 +64,7 @@
   },
   {
     "kode": "AVVIST",
-    "navn": "Forsendelsen er ikke validert pga. manglende/korrupt metadata, eller fordi forsendelsesfil ikke kunne dannes.",
+    "navn": "Forsendelsen ble avvist, for eksempel på grunn av ugyldige metadata.",
     "systemId": {
       "identifikatorverdi": "AVVIST"
     }
@@ -95,6 +88,69 @@
     "navn": "Dokumentet er klart for utsending til SvarUT",
     "systemId": {
       "identifikatorverdi": "KLART_TIL_SVARUT"
+    }
+  },
+  {
+    "kode": "FEILET_UNDER_MOTTAK",
+    "navn": "Forsendelsen feilet under mottak.",
+    "systemId": {
+      "identifikatorverdi": "FEILET_UNDER_MOTTAK"
+    }
+  },
+  {
+    "kode": "SLETTET",
+    "navn": "Forsendelsens innhold er slettet.",
+    "systemId": {
+      "identifikatorverdi": "SLETTET"
+    }
+  },
+  {
+    "kode": "SENDT_NHN_MOTTAKER",
+    "navn": "Sendt til mottaker i Norsk Helsenett.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_NHN_MOTTAKER"
+    }
+  },
+  {
+    "kode": "LEVERT_NHN_MOTTAKER",
+    "navn": "Mottaker i Norsk Helsenett har bekreftet mottak.",
+    "systemId": {
+      "identifikatorverdi": "LEVERT_NHN_MOTTAKER"
+    }
+  },
+  {
+    "kode": "SENDT_ALTINN",
+    "navn": "Sendt til Altinn.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_ALTINN"
+    }
+  },
+  {
+    "kode": "LEVERT_ALTINN",
+    "navn": "Levert til Altinn.",
+    "systemId": {
+      "identifikatorverdi": "LEVERT_ALTINN"
+    }
+  },
+  {
+    "kode": "SENDT_DIGITALT",
+    "navn": "Sendt digitalt.",
+    "systemId": {
+      "identifikatorverdi": "SENDT_DIGITALT"
+    }
+  },
+  {
+    "kode": "DELIVERY_UNCONFIRMED",
+    "navn": "Sendeutfallet må avklares med SvarUt før nytt forsøk.",
+    "systemId": {
+      "identifikatorverdi": "DELIVERY_UNCONFIRMED"
+    }
+  },
+  {
+    "kode": "ERROR",
+    "navn": "Dokumentet kunne ikke klargjøres for sending.",
+    "systemId": {
+      "identifikatorverdi": "ERROR"
     }
   }
 ]
