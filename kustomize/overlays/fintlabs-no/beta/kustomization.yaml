@@ -7,9 +7,11 @@ resources:
   - ../../../base
   - onepassword.yaml
 
-commonLabels:
-  app.kubernetes.io/instance: adapter-arkiv-faks_fintlabs-no
-  fintlabs.no/org-id: fintlabs.noo
+labels:
+  - pairs:
+      app.kubernetes.io/instance: adapter-arkiv-faks_fintlabs-no
+      fintlabs.no/org-id: fintlabs.no
+    includeSelectors: true
 
 patches:
 
