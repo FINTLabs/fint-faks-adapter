@@ -27,7 +27,7 @@ jobs:
           - fintlabs-no
     with:
       tags: ${{ needs.build-push.outputs.tags }}
-      environment: api
+      environment: beta
       org: ${{ matrix.org }}
       deploy-every-branch: false
     secrets: inherit
