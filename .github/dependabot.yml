@@ -6,10 +6,18 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
     directory: "/"
     schedule:
       interval: "weekly"
   - package-ecosystem: "gradle" # See documentation for possible values
+    groups:
+      gradle-dependencies:
+        patterns:
+          - "*"
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
@@ -18,6 +26,10 @@ updates:
         update-types:
           - "version-update:semver-major"
   - package-ecosystem: "docker"
+    groups:
+      docker-dependencies:
+        patterns:
+          - "*"
     directory: "/"
     schedule:
       interval: "weekly"
