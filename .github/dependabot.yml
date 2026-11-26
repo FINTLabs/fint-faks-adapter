@@ -14,10 +14,6 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "gradle" # See documentation for possible values
-    groups:
-      gradle-dependencies:
-        patterns:
-          - "*"
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
