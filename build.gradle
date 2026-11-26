@@ -47,16 +47,16 @@ dependencies {
     wsdl2java 'org.jvnet.jaxb2_commons:jaxb2-basics:1.11.1'
 
     // Version 3.5.6 is the latest we got to run with Java 8
-    compile('org.apache.cxf:cxf-rt-transports-http:3.5.6')
+    compile('org.apache.cxf:cxf-rt-transports-http:3.6.13')
     compile('org.apache.cxf:cxf-rt-frontend-jaxws:3.5.6')
     compile('org.apache.cxf:cxf-rt-ws-security:3.5.6')
     
     compile('org.bouncycastle:bcpkix-jdk15on:1.70')
     compile('org.bouncycastle:bcprov-jdk15on:1.70')
-    compile('commons-io:commons-io:2.17.0')
+    compile('commons-io:commons-io:2.22.0')
 
     compile('com.google.guava:guava:31.1-jre')
-    compile('org.apache.commons:commons-lang3:3.14.0')
+    compile('org.apache.commons:commons-lang3:3.22.0')
     compile('org.apache.jena:jena-arq:3.17.0')
     compile('org.apache.tika:tika-core:1.28.5')
 
@@ -79,7 +79,7 @@ dependencies {
     compile('org.springframework.hateoas:spring-hateoas')
     runtime('org.springframework.plugin:spring-plugin-core')
     runtime('org.springframework.boot:spring-boot-actuator')
-    compile('io.micrometer:micrometer-registry-prometheus:1.16.5')
+    compile('io.micrometer:micrometer-registry-prometheus:1.18.0')
     compile('io.micrometer:micrometer-spring-legacy:1.3.20')
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-hateoas')
@@ -94,17 +94,17 @@ dependencies {
     compile 'org.hibernate.validator:hibernate-validator-annotation-processor:6.2.6.Final'
 
     compile('com.azure:azure-storage-blob:12.20.2')
-    compile 'io.projectreactor:reactor-core:3.8.8'
+    compile 'io.projectreactor:reactor-core:3.9.0'
 
-    compile('com.fasterxml.jackson.core:jackson-annotations:2.22')
-    compile('com.fasterxml.jackson.core:jackson-core:2.21.2')
+    compile('com.fasterxml.jackson.core:jackson-annotations:2.23')
+    compile('com.fasterxml.jackson.core:jackson-core:2.22.4')
     compile('com.fasterxml.jackson.core:jackson-databind:2.23.0')
     compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.4')
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.23.0')
     compile('org.slf4j:slf4j-api:1.7.36')
 
     testCompile('cglib:cglib-nodep:3.3.0')
-    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+    testCompile('org.spockframework:spock-spring:1.3-groovy-2.5')
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0')
